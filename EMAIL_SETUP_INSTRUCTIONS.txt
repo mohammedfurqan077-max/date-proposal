@@ -1,0 +1,50 @@
+📧 EMAIL SETUP INSTRUCTIONS - SUPER EASY! 📧
+==============================================
+
+Follow these simple steps to receive emails when someone fills the form:
+
+STEP 1: Get Your Free Access Key
+---------------------------------
+1. Go to: https://web3forms.com
+2. Enter your email: mdfurqan.k77@gmail.com
+3. Click "Get Access Key"
+4. Check your email inbox for the access key (it's a long string of letters and numbers)
+
+STEP 2: Add the Access Key to Your HTML File
+---------------------------------------------
+1. Open index.html
+2. Find this line (around line 330):
+   formData.append('access_key', 'YOUR_ACCESS_KEY_HERE');
+   
+3. Replace 'YOUR_ACCESS_KEY_HERE' with your actual access key from step 1
+
+Example:
+   formData.append('access_key', 'abc123-def456-ghi789');
+
+STEP 3: Test It!
+----------------
+1. Open index.html in your browser
+2. Click YES
+3. Select food, drinks, and date
+4. Click Continue
+5. Check your email: mdfurqan.k77@gmail.com
+
+That's it! 🎉
+
+TROUBLESHOOTING:
+----------------
+- If you don't receive email, check your spam folder
+- Make sure you copied the entire access key (no spaces)
+- The access key should be between the quotes: 'YOUR_KEY_HERE'
+
+ALTERNATIVE METHOD (If Web3Forms doesn't work):
+------------------------------------------------
+I can help you set up EmailJS or another service. Just let me know!
+
+The email you'll receive will include:
+✅ Selected date
+✅ Food choices
+✅ Drink choices  
+✅ Response timestamp
+
+💖 Good luck with your proposal! 💖
