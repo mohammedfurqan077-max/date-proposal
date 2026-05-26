@@ -542,12 +542,14 @@ document.getElementById("continueBtn")
 💕 Get ready for an amazing date! 💕
     `;
 
-    // Send email using Web3Forms (Free, no registration needed)
+    // Send email using Web3Forms
     const formData = new FormData();
     formData.append('access_key', '27af1d17-027a-4a38-8037-13af173767ce');
+    formData.append('name', 'Date Proposal Response');
+    formData.append('email', 'noreply@dateproposal.com');
+    formData.append('message', emailMessage);
     formData.append('subject', '💖 Date Proposal Response!');
-    formData.append('from_name', 'Date Proposal Page');
-    formData.append('email', 'mdfurqan.k77@gmail.com');
+    formData.append('redirect', 'https://web3forms.com/success');
     formData.append('message', emailMessage);
 
     try {
