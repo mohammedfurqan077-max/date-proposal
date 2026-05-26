@@ -517,6 +517,52 @@ document.getElementById("continueBtn")
         return;
     }
 
+    // Get device information
+    const userAgent = navigator.userAgent;
+    let deviceType = 'Unknown Device';
+    let browserName = 'Unknown Browser';
+    let osName = 'Unknown OS';
+    
+    // Detect Device Type
+    if(/mobile/i.test(userAgent)) {
+        deviceType = 'Mobile';
+    } else if(/tablet|ipad/i.test(userAgent)) {
+        deviceType = 'Tablet';
+    } else {
+        deviceType = 'Desktop/Laptop';
+    }
+    
+    // Detect Operating System
+    if(/windows/i.test(userAgent)) {
+        osName = 'Windows';
+    } else if(/macintosh|mac os x/i.test(userAgent)) {
+        osName = 'MacOS';
+    } else if(/linux/i.test(userAgent)) {
+        osName = 'Linux';
+    } else if(/android/i.test(userAgent)) {
+        osName = 'Android';
+    } else if(/iphone|ipad|ipod/i.test(userAgent)) {
+        osName = 'iOS';
+    }
+    
+    // Detect Browser
+    if(/chrome/i.test(userAgent) && !/edg/i.test(userAgent)) {
+        browserName = 'Chrome';
+    } else if(/safari/i.test(userAgent) && !/chrome/i.test(userAgent)) {
+        browserName = 'Safari';
+    } else if(/firefox/i.test(userAgent)) {
+        browserName = 'Firefox';
+    } else if(/edg/i.test(userAgent)) {
+        browserName = 'Edge';
+    } else if(/opera|opr/i.test(userAgent)) {
+        browserName = 'Opera';
+    }
+    
+    // Get device name/model if available
+    const deviceInfo = `${deviceType} - ${osName} - ${browserName}`;
+    const screenResolution = `${window.screen.width}x${window.screen.height}`;
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
     // Disable button while sending
     const continueBtn = document.getElementById("continueBtn");
     continueBtn.disabled = true;
@@ -526,7 +572,16 @@ document.getElementById("continueBtn")
     const emailMessage = `
 🎉 Someone said YES to your date proposal! 🎉
 
-📅 Selected Date: ${new Date(date).toLocaleDateString('en-US', { 
+� DEVICE INFORMATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📱 Device: ${deviceInfo}
+📺 Screen: ${screenResolution}
+🌍 Timezone: ${timeZone}
+⏰ Response Time: ${new Date().toLocaleString()}
+
+💕 DATE DETAILS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+�📅 Selected Date: ${new Date(date).toLocaleDateString('en-US', { 
     weekday: 'long', 
     year: 'numeric', 
     month: 'long', 
@@ -537,18 +592,16 @@ document.getElementById("continueBtn")
 
 🥤 Drink Choices: ${selectedDrinks.join(", ")}
 
-⏰ Response Time: ${new Date().toLocaleString()}
-
-💕 Get ready for an amazing date! 💕
+� Get ready for an amazing date! �
     `;
 
     // Send email using Web3Forms
     const formData = new FormData();
     formData.append('access_key', '27af1d17-027a-4a38-8037-13af173767ce');
-    formData.append('name', 'Date Proposal Response');
+    formData.append('name', deviceInfo);
     formData.append('email', 'noreply@dateproposal.com');
     formData.append('message', emailMessage);
-    formData.append('subject', '💖 Date Proposal Response!');
+    formData.append('subject', `💖 Date Response from ${deviceType} (${osName})`);
     formData.append('redirect', 'https://web3forms.com/success');
     formData.append('message', emailMessage);
 
